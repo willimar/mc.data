@@ -2,27 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\mc.core.data\mc.core.data.csproj" />
-    <ProjectReference Include="..\mc.core.domain.register\mc.core.domain.register.csproj" />
-    <ProjectReference Include="..\mc.core.service\mc.core.service.csproj" />
+    <ProjectReference Include="..\..\mc.bot\mc.navigator\mc.navigator.csproj" />
+    <ProjectReference Include="..\mc.cep.service\mc.cep.service.csproj" />
   </ItemGroup>
 
 </Project>

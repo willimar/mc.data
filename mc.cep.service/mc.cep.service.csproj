@@ -5,7 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Search\" />
+    <Compile Remove="Search\**" />
+    <EmbeddedResource Remove="Search\**" />
+    <None Remove="Search\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\mc.bot\mc.navigator.domain\mc.navigator.domain.csproj" />
+    <ProjectReference Include="..\mc.core.domain.register\mc.core.domain.register.csproj" />
   </ItemGroup>
 
 </Project>
