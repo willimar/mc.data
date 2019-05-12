@@ -3,6 +3,7 @@ using mc.core.domain.Interface.Service;
 using mc.core.exception.ValuesException;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace mc.core.service
@@ -43,7 +44,7 @@ namespace mc.core.service
             this.repositoryBase.Dispose();
         }
 
-        public IEnumerable<TEntity> GetData(Func<TEntity, bool> func)
+        public IEnumerable<TEntity> GetData(Expression<Func<TEntity, bool>> func)
         {
             return this.repositoryBase.GetData(func);
         }

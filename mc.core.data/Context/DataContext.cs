@@ -10,37 +10,46 @@ using System.Text;
 
 namespace mc.core.data.Context
 {
-    public class DataContext: DbContext, IProvider
+    public class DataContext: IProvider
     {
-        protected virtual DbSet<Country> Country { get; set; }
-        protected virtual DbSet<State> State { get; set; }
-        protected virtual DbSet<City> City { get; set; }
-        protected virtual DbSet<Address> Address { get; set; }
-        protected virtual DbSet<Document> Document { get; set; }
-        protected virtual DbSet<PersonalContact> PersonalContact { get; set; }
-        protected virtual DbSet<Person> Person { get; set; }
+        public int Port { get; set; }
+        public string Ip { get; set; }
+        public string DataBaseName { get; set; }
+        public string Password { private get; set; }
+        public string UserName { private get; set; }
 
         public DataContext()
-        { }
-
-        public DataContext(DbContextOptions<DataContext> opcoes)
-            :base(opcoes)
-        { }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ForSqlServerUseIdentityColumns();
+            this.Port = 0;
+            this.Ip = @".\SQLEXPRESS";
+            this.DataBaseName = "MCDATA";
+            this.Password = "superwell";
+            this.UserName = "sa";
+        }
+        public DataContext(int port, string ip, string dataBaseName, string password, string userName)
+        {
+            this.Port = port;
+            this.Ip = ip;
+            this.DataBaseName = dataBaseName;
+            this.Password = password;
+            this.UserName = userName;
+        }
 
-            new CountryConfig().Configure(modelBuilder.Entity<Country>());
-            new StateConfig().Configure(modelBuilder.Entity<State>());
-            new CityConfig().Configure(modelBuilder.Entity<City>());
+        public T GetDataBse<T>() 
+        {
+            const string CONNECTIONSTRING = @"Data Source={0}{4};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}";
+            var builder = new DbContextOptionsBuilder();
+            var connectionString = string.Format(CONNECTIONSTRING, this.Ip, this.DataBaseName, this.UserName, this.Password,
+                    this.Port > 0 ? this.Port.ToString(",0") : string.Empty);
+            builder.UseSqlServer(connectionString);
+            var context = new InternalDbContext(builder.Options);
 
-            new AddressConfig().Configure(modelBuilder.Entity<Address>());
-            new DocumentConfig().Configure(modelBuilder.Entity<Document>());
-            new PersonalContactConfig().Configure(modelBuilder.Entity<PersonalContact>());
-            new PersonConfig().Configure(modelBuilder.Entity<Person>());
+            return (dynamic)context;
+        }
 
-            modelBuilder.Entity<Country>().ToTable(nameof(Country));
+        public void Dispose()
+        {
+            
         }
     }
 }

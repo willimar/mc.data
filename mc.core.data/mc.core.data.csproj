@@ -20,8 +20,4 @@
     <ProjectReference Include="..\mc.core.exception\mc.core.exception.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

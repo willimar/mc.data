@@ -13,11 +13,11 @@ namespace mc.code.simulation
             Console.ReadKey();
             Console.WriteLine("Migration sendo iniciado");
 
-            var dbFactory = new DbContextFactory();
+            var dbFactory = new DataContext(0, @".\SQLEXPRESS", "MCDATA_TEST", "superwell", "sa");
 
-            var context = dbFactory.CreateDbContext(new string[] {});
-            //context.Database.Migrate();
-            //context.Database.EnsureCreated();
+            var context = dbFactory.GetDataBse<DbContext>();
+            context.Database.Migrate();
+            context.Database.EnsureCreated();
 
             Console.ReadKey();
         }

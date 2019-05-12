@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\mc.core.domain.register\mc.core.domain.register.csproj" />
+    <ProjectReference Include="..\mc.core.domain\mc.core.domain.csproj" />
+    <ProjectReference Include="..\mc.core.exception\mc.core.exception.csproj" />
+  </ItemGroup>
+
+</Project>

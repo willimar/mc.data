@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace mc.core.data.Repository
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable where TEntity : class, new()
     {
-        protected readonly IProvider dbContext = null;
+        protected DbContext dbContext = null;
         protected readonly DbSet<TEntity> dbSet = null;
 
         private BaseRepository() { }
@@ -31,8 +32,8 @@ namespace mc.core.data.Repository
 
         public BaseRepository(IProvider dbContext)
         {
-            this.dbContext = dbContext;
-            this.dbSet = (this.dbContext as DbContext).Set<TEntity>() as DbSet<TEntity>;
+            this.dbContext = dbContext.GetDataBse<DbContext>();
+            this.dbSet = this.dbContext.Set<TEntity>() as DbSet<TEntity>;
         }
 
         public TEntity DeleteData(TEntity entity)
@@ -56,7 +57,7 @@ namespace mc.core.data.Repository
             dbContext.Dispose();
         }
 
-        public IEnumerable<TEntity> GetData(Func<TEntity, bool> func)
+        public IEnumerable<TEntity> GetData(Expression<Func<TEntity, bool>> func)
         {
             var result = dbSet.Where(func);
 

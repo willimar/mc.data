@@ -1,7 +1,12 @@
 using mc.core.data.Context;
+using mc.core.data.Migrations;
+using mc.core.domain.register.Entity.Person;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace mc.core.data.test
 {
@@ -11,30 +16,17 @@ namespace mc.core.data.test
         [TestMethod]
         public void MigrationTest()
         {
-            using (var context = new DbContextFactory().CreateDbContext(new string[] { @".\SQLEXPRESS", "MCDATA_TEST", "sa", "superwell" }) as DbContext)
+            using (var factory = new DbContextFactory())
             {
-                context.Database.Migrate();
-                context.Database.EnsureCreated();
-            }
-        }
+                using (var context = factory.CreateDbContext(new string[] { }))
+                {
+                    context.Database.Migrate();
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void MigrationInvalidArguments1Test()
-        {
-            using (var context = new DbContextFactory().CreateDbContext(new string[] { }) as DbContext)
-            {
+                    var person = context.Set<Person>() as DbSet<Person>;
+                    var count = person.Count();
 
-            }
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void MigrationInvalidArguments2Test()
-        {
-            using (var context = new DbContextFactory().CreateDbContext(null) as DbContext)
-            {
-  
+                    Assert.IsTrue(count >= 0);
+                }                 
             }
         }
     }

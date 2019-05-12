@@ -1,5 +1,5 @@
 ﻿using mc.cep.service;
-using mc.cep.service.Prividers;
+using mc.cep.service.Providers;
 using mc.core.domain.register.Entity.Person;
 using mc.navigator;
 using mc.navigator.domain.Interfaces;

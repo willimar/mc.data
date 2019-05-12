@@ -40,8 +40,13 @@ namespace mc.api.register.Controllers.Register
         }
 
         [HttpPost]
-        public ActionResult<Person> Append(Person person)
+        public ActionResult<Person> Append([FromBody]Person person)
         {
+            if (person == null)
+            {
+                throw new ArgumentNullException(nameof(person));
+            }
+
             return this.personService.AppenData(person);
         }
     }

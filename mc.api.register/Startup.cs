@@ -23,6 +23,7 @@ namespace mc.api.register
         }
 
         public IConfiguration Configuration { get; }
+        readonly string AllowSpecificOrigins = "_AllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -51,8 +52,18 @@ namespace mc.api.register
             services.AddTransient<PersonController>();
 
             services.AddTransient<IProvider>(s => 
-                new DbContextFactory().CreateDbContext(new string[] { @".\SQLEXPRESS", "MCDATA_TEST", "sa", "superwell" })
+                new DataContext(0, @".\SQLEXPRESS", "MCDATA", "superwell", "sa")
             );
+
+            services.AddCors(options => {
+                options.AddPolicy(AllowSpecificOrigins,
+                    builder => {
+                        //builder.WithOrigins(@"http://localhost:4200");
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -64,6 +75,8 @@ namespace mc.api.register
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(AllowSpecificOrigins);
 
             app.UseMvc();
 

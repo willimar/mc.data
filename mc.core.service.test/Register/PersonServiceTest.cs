@@ -31,7 +31,7 @@ namespace mc.core.service.test.Register
 
         private IProvider GetContext()
         {
-            var context = new DbContextFactory().CreateDbContext(new string[] { @".\SQLEXPRESS", "MCDATA_TEST", "sa", "superwell" });
+            var context = new DataContext(0, @".\SQLEXPRESS", "MCDATA_TEST", "superwell", "sa");
             return context;
         }
 

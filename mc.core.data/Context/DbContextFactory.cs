@@ -1,49 +1,51 @@
 ﻿using mc.core.domain.register.Interface.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
 
 namespace mc.core.data.Context
 {
-    public class DbContextFactory: IDesignTimeDbContextFactory<DataContext>
+    public class DbContextFactory : IDesignTimeDbContextFactory<InternalDbContext>, IDisposable
     {
         private const string CONNECTIONSTRING = @"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}";
+        private string _instance = @".\SQLEXPRESS";
+        private object _dataBase = "MCDATA";
+        private object _user = "sa";
+        private object _password = "superwell";
 
         public DbContextFactory()
         {
         }
-        
+
 
         /// <summary>
         /// use Data Source, Initial Catalog, User and Password in the parameters
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public IProvider CreateDbContext(string[] args)
+        public InternalDbContext CreateDbContext(string[] args)
         {
-            if ((args is null) || (args.Length != 4))
-            {
-                throw new ArgumentException("Number of the parameters is invalid.");
-                //args = new string[] { @".\SQLEXPRESS", "MCDATA_TEST", "sa", "*****" };
-            }
-
-            var builder = new DbContextOptionsBuilder<DataContext>();
-            var connectionString = string.Format(CONNECTIONSTRING, args[0], args[1], args[2], args[3]);
+            var builder = new DbContextOptionsBuilder<InternalDbContext>();
+            var connectionString = string.Format(CONNECTIONSTRING, this._instance, this._dataBase, this._user, this._password);
 
             builder.UseSqlServer(connectionString);
+            var context = new InternalDbContext(builder.Options);
 
-            return new DataContext(builder.Options);
+            context.Database.Migrate();
+            context.Database.EnsureCreated();
+            var migrations = context.Database.GetAppliedMigrations();
+
+            return context;
         }
 
-        DataContext IDesignTimeDbContextFactory<DataContext>.CreateDbContext(string[] args)
+        public void Dispose()
         {
-            return this.CreateDbContext(args) as DataContext;
+
+        }
+
+        InternalDbContext IDesignTimeDbContextFactory<InternalDbContext>.CreateDbContext(string[] args)
+        {
+            return this.CreateDbContext(args) as InternalDbContext;
         }
     }
 }
