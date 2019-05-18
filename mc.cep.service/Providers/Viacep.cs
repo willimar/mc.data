@@ -20,30 +20,36 @@ namespace mc.cep.service.Providers
         }
 
         public Address Parser(string values)
-        {
-            var json = JsonConvert.DeserializeObject<dynamic>(values);
-            var address = new Address()
+        {//
+            try
             {
-                PostalCode = json.cep,
-                PublicPlace = json.logradouro,
-                Complement = json.complemento,
-                District = json.bairro,
-                City = new City
+                var json = JsonConvert.DeserializeObject<dynamic>(values);
+                var address = new Address()
                 {
-                    Name = json.localidade,
-                    State = new State()
+                    PostalCode = json.cep,
+                    PublicPlace = json.logradouro,
+                    Complement = json.complemento,
+                    District = json.bairro,
+                    City = new City
                     {
-                        Initials = json.uf,
-                        Country = new Country()
+                        Name = json.localidade,
+                        State = new State()
                         {
-                            Name = "Brasil",
-                            Initials = "BR"
+                            Initials = json.uf,
+                            Country = new Country()
+                            {
+                                Name = "Brasil",
+                                Initials = "BR"
+                            }
                         }
                     }
-                }
-            };
-
-            return address;
+                };
+                return address;
+            }
+            catch
+            {
+                throw new Exception(values);
+            }
         }
     }
 }

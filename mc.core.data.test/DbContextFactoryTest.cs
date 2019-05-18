@@ -1,5 +1,3 @@
-using mc.core.data.Context;
-using mc.core.data.Migrations;
 using mc.core.domain.register.Entity.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -13,21 +11,21 @@ namespace mc.core.data.test
     [TestClass]
     public class DbContextFactoryTest
     {
-        [TestMethod]
-        public void MigrationTest()
-        {
-            using (var factory = new DbContextFactory())
-            {
-                using (var context = factory.CreateDbContext(new string[] { }))
-                {
-                    context.Database.Migrate();
+        //[TestMethod]
+        //public void MigrationTest()
+        //{
+        //    using (var factory = new DbContextFactory())
+        //    {
+        //        using (var context = factory.CreateDbContext(new string[] { }))
+        //        {
+        //            context.Database.Migrate();
 
-                    var person = context.Set<Person>() as DbSet<Person>;
-                    var count = person.Count();
+        //            var person = context.Set<Person>() as DbSet<Person>;
+        //            var count = person.Count();
 
-                    Assert.IsTrue(count >= 0);
-                }                 
-            }
-        }
+        //            Assert.IsTrue(count >= 0);
+        //        }                 
+        //    }
+        //}
     }
 }

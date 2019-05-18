@@ -4,6 +4,7 @@ using mc.navigator.domain.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace mc.cep.service
@@ -28,8 +29,11 @@ namespace mc.cep.service
             this._navigator.Headers.Add("Accept-Language", "pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3");
             this._navigator.Headers.Add("Connection", "Keep-alive");
             this._navigator.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+            //this._navigator.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+            this._navigator.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));//ACCEPT header
 
-            var response = this._navigator.Navigate(new Uri(this._provider.GetUrl(cep)), this._provider.Method);
+
+            var response = this._navigator.Navigate(new Uri(this._provider.GetUrl("36038000")), this._provider.Method);
             return this._provider.Parser(response);
         }
     }

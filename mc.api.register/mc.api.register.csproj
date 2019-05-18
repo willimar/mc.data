@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -20,9 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\mc.core.data\mc.core.data.csproj" />
     <ProjectReference Include="..\mc.core.domain.register\mc.core.domain.register.csproj" />
+    <ProjectReference Include="..\mc.core.repository\mc.core.repository.csproj" />
     <ProjectReference Include="..\mc.core.service\mc.core.service.csproj" />
+    <ProjectReference Include="..\mc.provider.sqlserver\mc.provider.sqlserver.csproj" />
+    <ProjectReference Include="..\mc.repository.person\mc.repository.person.csproj" />
   </ItemGroup>
 
 </Project>

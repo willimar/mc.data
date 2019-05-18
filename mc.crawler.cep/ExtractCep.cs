@@ -19,9 +19,9 @@ namespace mc.crawler.cep
 
         public void AdjustFieldValues(Address address)
         {
-            var city = this._cepPieces.GetCity(c => c.Equals(address.City));
-            var state = this._cepPieces.GetState(c => c.Equals(address.City.State));
-            var country = this._cepPieces.GetCoutry(c => c.Equals(address.City.State.Country));
+            var city = this._cepPieces.GetCity(c => c.Name.Equals(address.City.Name));
+            var state = this._cepPieces.GetState(c => c.Initials.Equals(address.City.State.Initials));
+            var country = this._cepPieces.GetCoutry(c => c.Name.Equals("Brasil"));
 
             if (!(city is null))
             {

@@ -1,4 +1,4 @@
-﻿using mc.core.data.Context;
+﻿using mc.provider.sqlserver.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -15,9 +15,9 @@ namespace mc.code.simulation
 
             var dbFactory = new DataContext(0, @".\SQLEXPRESS", "MCDATA_TEST", "superwell", "sa");
 
-            var context = dbFactory.GetDataBse<DbContext>();
-            context.Database.Migrate();
-            context.Database.EnsureCreated();
+            //var context = dbFactory.GetDataBse<DbContext>();
+            //context.Database.Migrate();
+            //context.Database.EnsureCreated();
 
             Console.ReadKey();
         }

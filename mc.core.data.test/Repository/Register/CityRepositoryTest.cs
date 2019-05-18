@@ -1,13 +1,9 @@
-﻿using mc.core.data.Context;
-using mc.core.data.Repository.Register;
-using mc.core.domain.register.Entity;
-using mc.core.domain.register.Interface.Repository;
-using Microsoft.EntityFrameworkCore;
+﻿using mc.core.domain.register.Entity;
+using mc.core.repository;
+using mc.provider.sqlserver.Context;
+using mc.repository.person;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace mc.core.data.test.Repository.Register
 {

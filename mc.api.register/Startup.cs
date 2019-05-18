@@ -1,10 +1,10 @@
 ﻿using mc.api.register.Controllers.Register;
-using mc.core.data.Context;
-using mc.core.data.Repository.Register;
-using mc.core.domain.register.Interface.Repository;
 using mc.core.domain.register.Interface.Repository.Person;
+using mc.core.repository;
 using mc.core.service.Interface;
 using mc.core.service.Register;
+using mc.provider.sqlserver.Context;
+using mc.repository.person;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

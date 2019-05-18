@@ -1,15 +1,12 @@
 ﻿using mc.core.domain.register.Entity;
 using mc.core.domain.register.Entity.Person;
-using mc.core.domain.register.Interface.Repository;
-using mc.core.mongo.Context;
-using mc.core.mongo.Repository.Register;
-using mc.core.service.Register;
+using mc.core.repository;
+using mc.provider.mongo.Context;
+using mc.repository.person;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace mc.core.data.test.Mongo.Register.Person
 {
