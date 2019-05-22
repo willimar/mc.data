@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\mc.cript\mc.cript.csproj" />
     <ProjectReference Include="..\mc.provider.sqlserver\mc.provider.sqlserver.csproj" />
   </ItemGroup>
 

@@ -14,6 +14,14 @@ namespace mc.core.domain.register.Entity
         public string Code { get; set; }
         public virtual State State { get; set; }
 
+        public override void Dispose()
+        {
+            if (this.State != null)
+            {
+                this.State.Dispose();
+            }
+        }
+
         public bool Equals(City other)
         {
             if (this.Id.Equals(other.Id))

@@ -13,6 +13,10 @@
     <ProjectReference Include="..\..\mc.bot\mc.navigator\mc.navigator.csproj" />
     <ProjectReference Include="..\mc.cep.service\mc.cep.service.csproj" />
     <ProjectReference Include="..\mc.core.service\mc.core.service.csproj" />
+    <ProjectReference Include="..\mc.provider.mongo\mc.provider.mongo.csproj" />
+    <ProjectReference Include="..\mc.provider.mysql\mc.provider.mysql.csproj" />
+    <ProjectReference Include="..\mc.repository.cep\mc.repository.cep.csproj" />
+    <ProjectReference Include="..\mc.repository.person\mc.repository.person.csproj" />
   </ItemGroup>
 
   <ItemGroup>

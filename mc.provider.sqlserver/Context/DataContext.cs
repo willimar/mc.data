@@ -57,5 +57,10 @@ namespace mc.provider.sqlserver.Context
             this._context.Dispose();
             this._context = null;
         }
+
+        public TContext GetContext<TContext>()
+        {
+            return (dynamic)this._context;
+        }
     }
 }

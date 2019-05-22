@@ -21,6 +21,11 @@ namespace mc.core.domain.register.Entity.Person
         public ContactTypes ContactType { get; set; }
         public string Value { get; set; }
 
+        public override void Dispose()
+        {
+            
+        }
+
         public bool Equals(PersonalContact other)
         {
             if (this.Id.Equals(other.Id))

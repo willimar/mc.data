@@ -23,7 +23,9 @@
     <ProjectReference Include="..\mc.core.repository\mc.core.repository.csproj" />
     <ProjectReference Include="..\mc.core.service\mc.core.service.csproj" />
     <ProjectReference Include="..\mc.provider.mongo\mc.provider.mongo.csproj" />
+    <ProjectReference Include="..\mc.provider.mysql\mc.provider.mysql.csproj" />
     <ProjectReference Include="..\mc.provider.sqlserver\mc.provider.sqlserver.csproj" />
+    <ProjectReference Include="..\mc.repository.cep\mc.repository.cep.csproj" />
     <ProjectReference Include="..\mc.repository.person\mc.repository.person.csproj" />
   </ItemGroup>
 

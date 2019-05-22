@@ -11,7 +11,7 @@ namespace mc.core.domain.Entity
         Deleted
     }
 
-    public abstract class BaseEntity
+    public abstract class BaseEntity: IDisposable
     {
         public Guid Id { get; set; }
         public DateTime RegisterDate { get; set; }
@@ -25,5 +25,7 @@ namespace mc.core.domain.Entity
             this.LastChangeDate = DateTime.Now;
             this.Status = Status.Active;
         }
+
+        public abstract void Dispose();
     }
 }

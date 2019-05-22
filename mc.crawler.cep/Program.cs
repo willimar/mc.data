@@ -1,67 +1,75 @@
-﻿namespace mc.crawler.cep
+﻿using mc.core.domain.register.Entity;
+using mc.core.domain.register.Entity.Person;
+using mc.provider.mysql.Context;
+using mc.repository.cep;
+using mc.repository.person;
+using System;
+using System.Linq;
+
+namespace mc.crawler.cep
 {
     class Program
     {
         static void Main()
         {
-            //var navigator = new NavigatorService();
-            //var correios = new Correios();
-            //var cepService = new CepService<Address>(navigator, correios);
-            //var sqlServerContext = new mc.core.data.Context.DataContext();
-            //var cepPieces = new CepPieces(new CityRepository(sqlServerContext), 
-            //        new StateRepository(sqlServerContext), 
-            //        new CountryRepository(sqlServerContext));
-            //var crawler = new ExtractCep(cepService, cepPieces);
-            //var mongoRepository = new AddressRepository(new DataContext(27017, "localhost", "mctest", string.Empty, string.Empty));
-            //var addressService = new AddressService(mongoRepository);
-            //var flag = 0;
+            using (var providerMySql = new DataContext(3306, "localhost", "mcdata", "userTest", "userTest"))
+            {
+                using (var source = new MySqlCepImportRepository(providerMySql))
+                {
+                    using (var providerMongo = new mc.provider.mongo.Context.DataContext(27017, "localhost", "mctest", string.Empty, string.Empty))
+                    {
+                        using (var target = new AddressRepository(providerMongo))
+                        {
+                            var ceps = source.GetData(x => true);
 
-            //for (int i = 1000; i < 10000; i++)
-            //{
-            //    for (int j = 0; j < 1000; j++)
-            //    {
-            //        if (flag.Equals(25))
-            //        {
-            //            flag = 0;
-            //            Thread.Sleep(20000);
-            //        }
-            //        else
-            //        {
-            //            flag++;
-            //            Thread.Sleep(10000);
-            //        }
+                            if (! ceps.Any())
+                            {
+                                return;
+                            }
+                            foreach (var item in ceps)
+                            {
+                                Console.WriteLine($"CEP: {item.Cep} - {item.EnderecoCompleto}");
 
-            //        var cep = string.Concat(i.ToString("00000"), j.ToString("000"));
-
-            //        correios.Cep = cep;
-
-            //        var address = crawler.GetAddress(cep);
-
-            //        if (address is null)
-            //        {
-            //            Console.WriteLine(string.Format("CEP: {0} => Not found", cep));
-            //            continue;
-            //        }
-
-            //        crawler.AdjustFieldValues(address);
-
-            //        //check there is in mongodb
-            //        var mongoAddress = addressService.GetData(e => e.PostalCode.Equals(address.PostalCode));
-                    
-            //        if ((mongoAddress is null) || !mongoAddress.Any())
-            //        {
-            //            if (!(address.PostalCode is null))
-            //            {
-            //                addressService.AppenData(address);
-            //                Console.WriteLine(string.Format("CEP: {0} => Inserted", cep));
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine(string.Format("CEP: {0} => Not found", cep));
-            //            }
-            //        }
-            //    }
-            //}
+                                using (var targetEntity = new Address()
+                                {
+                                    PublicPlace = item.Logradouro,
+                                    PostalCode = item.Cep,
+                                    FullStreeName = item.EnderecoCompleto,
+                                    StreetName = item.Endereco,
+                                    Complement = null,
+                                    District = item.Bairro,
+                                    Number = null,
+                                    Status = core.domain.Entity.Status.Active,
+                                    City = new City()
+                                    {
+                                        Status = core.domain.Entity.Status.Active,
+                                        Code = null,
+                                        Initials = null,
+                                        Name = item.Cidade,
+                                        State = new State()
+                                        {
+                                            Code = null,
+                                            Initials = item.Uf,
+                                            Name = item.Estado,
+                                            Status = core.domain.Entity.Status.Active,
+                                            Country = new Country()
+                                            {
+                                                Code = null,
+                                                Initials = item.PaisSigla,
+                                                Name = item.Pais,
+                                                Status = core.domain.Entity.Status.Active
+                                            }
+                                        }
+                                    }
+                                })
+                                {
+                                    target.AppenData(targetEntity);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

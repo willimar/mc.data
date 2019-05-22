@@ -16,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\mc.bot\mc.navigator\mc.navigator.csproj" />
     <ProjectReference Include="..\mc.cep.service\mc.cep.service.csproj" />
+    <ProjectReference Include="..\mc.provider.mongo\mc.provider.mongo.csproj" />
+    <ProjectReference Include="..\mc.repository.person\mc.repository.person.csproj" />
   </ItemGroup>
 
 </Project>

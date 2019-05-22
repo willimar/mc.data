@@ -75,5 +75,10 @@ namespace mc.provider.mongo.Context
         }
 
         public void SaveChanges(){ }
+
+        public TContext GetContext<TContext>()
+        {
+            return (dynamic)this._context;
+        }
     }
 }

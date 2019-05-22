@@ -14,6 +14,14 @@ namespace mc.core.domain.register.Entity
         public string Initials { get; set; }
         public virtual Country Country { get; set; }
 
+        public override void Dispose()
+        {
+            if (this.Country != null)
+            {
+                this.Country.Dispose();
+            }
+        }
+
         public bool Equals(State other)
         {
             if (this.Id.Equals(other.Id))

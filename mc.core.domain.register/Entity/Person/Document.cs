@@ -14,6 +14,11 @@ namespace mc.core.domain.register.Entity.Person
         public DateTime EmissionDate { get; set; }
         public string Complement { get; set; }
 
+        public override void Dispose()
+        {
+            
+        }
+
         public bool Equals(Document other)
         {
             if (this.Id.Equals(other.Id))

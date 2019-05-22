@@ -21,6 +21,45 @@ namespace mc.core.domain.register.Entity.Person
         public virtual IEnumerable<Address> Addresses { get; set; }
         public virtual IEnumerable<Document> Documents { get; set; }
 
+        public override void Dispose()
+        {
+            if ((this.PersonalContacts != null) && this.PersonalContacts.Any())
+            {
+                foreach (var item in this.PersonalContacts)
+                {
+                    item.Dispose();
+                }
+                this.PersonalContacts = null;
+            }
+
+            if ((this.Dependents != null) && this.Dependents.Any())
+            {
+                foreach (var item in this.Dependents)
+                {
+                    item.Dispose();
+                }
+                this.Dependents = null;
+            }
+
+            if ((this.Addresses != null) && this.Addresses.Any())
+            {
+                foreach (var item in this.Addresses)
+                {
+                    item.Dispose();
+                }
+                this.Addresses = null;
+            }
+
+            if ((this.Documents != null) && this.Documents.Any())
+            {
+                foreach (var item in this.Documents)
+                {
+                    item.Dispose();
+                }
+                this.Documents = null;
+            }
+        }
+
         public bool Equals(Person other)
         {
             if (this.Id.Equals(other.Id))

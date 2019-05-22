@@ -4,7 +4,7 @@ using System.Text;
 
 namespace mc.core.repository
 {
-    public interface IProvider
+    public interface IProvider: IDisposable
     {
         int Port { get; }
         string Ip { get; }
@@ -14,7 +14,8 @@ namespace mc.core.repository
 
         ISet<TEntity> GetSet<TEntity>() where TEntity : class, new();
         void DataBasePrepare();
+        TContext GetContext<TContext>();
         void SaveChanges();
-        void Dispose();
+
     }
 }
