@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using System.Net.Http;
 
 namespace mc.cep.check
 {
@@ -32,8 +33,6 @@ namespace mc.cep.check
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            GetUser();
-            GetPassword();
         }
 
         public IConfiguration Configuration { get; }
@@ -74,6 +73,7 @@ namespace mc.cep.check
             services.Configure<DataContextConfig>(Configuration.GetSection("MongoDb"));
 
             services.AddTransient<INavigator, NavigatorService>();
+            services.AddTransient<HttpClient>();
             services.AddTransient<IProviderService<Address>, Viacep>();
             services.AddTransient<CepService>();
             services.AddTransient<IAddressRepository, AddressRepository>();
