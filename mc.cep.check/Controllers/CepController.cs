@@ -16,28 +16,25 @@ namespace mc.cep.check.Controllers
     [ApiController]
     public class CepController : Controller
     {
-        private CepService<Address> cepService;
+        private readonly CepService _cepService;
 
-        public class Cep
+        public CepController(CepService cepService)
         {
-            public string Value { get; set; }
-        }
-
-        public CepController(CepService<Address> cepService)
-        {
-            this.cepService = cepService;
+            this._cepService = cepService;
         }
 
         [HttpGet]
-        public ActionResult<string> Index()
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public ActionResult<Address> Index(string cep)
         {
-            return "Use only post in [Find] method and form with [Cep.Value] parameter.";
-        }
+            var address = this._cepService.Get(cep);
 
-        [HttpPost]
-        public ActionResult<Address> Find([FromBody]Cep cep)
-        {
-            return this.cepService.Get(cep.Value);
+            if (address == null || !address.IsValid())
+            {
+                return NotFound();
+            }
+
+            return address;
         }
     }
 }

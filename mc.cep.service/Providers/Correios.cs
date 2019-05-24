@@ -2,10 +2,7 @@
 using mc.core.domain.register.Entity;
 using mc.core.domain.register.Entity.Person;
 using mc.navigator.domain.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web;
 
 namespace mc.cep.service.Providers
@@ -29,8 +26,10 @@ namespace mc.cep.service.Providers
 
         private Dictionary<string, string> GetForm()
         {
-            var result = new Dictionary<string, string>(1);
-            result["CEP"] = this.Cep;
+            var result = new Dictionary<string, string>(1)
+            {
+                ["CEP"] = this.Cep
+            };
             return result;
         }
 

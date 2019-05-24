@@ -27,5 +27,6 @@ namespace mc.core.domain.Entity
         }
 
         public abstract void Dispose();
+        public abstract bool IsValid();
     }
 }

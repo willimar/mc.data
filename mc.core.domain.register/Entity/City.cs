@@ -36,5 +36,11 @@ namespace mc.core.domain.register.Entity
 
             return false;
         }
+
+        public override bool IsValid()
+        {
+            return !string.IsNullOrEmpty(this.Name)
+                && this.State.IsValid();
+        }
     }
 }

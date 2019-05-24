@@ -14,12 +14,14 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace mc.api.register
 {
+    
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
 
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }

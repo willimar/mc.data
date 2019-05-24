@@ -78,5 +78,10 @@ namespace mc.core.domain.register.Entity.Person
 
             return false;
         }
+
+        public override bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

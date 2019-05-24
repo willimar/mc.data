@@ -11,13 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BadRobot" Version="1.0.2" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\mc.bot\mc.navigator.domain\mc.navigator.domain.csproj" />
     <ProjectReference Include="..\mc.core.domain.register\mc.core.domain.register.csproj" />
+    <ProjectReference Include="..\mc.core.exception\mc.core.exception.csproj" />
   </ItemGroup>
 
 </Project>

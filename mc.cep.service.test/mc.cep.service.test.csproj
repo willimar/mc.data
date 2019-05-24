@@ -7,14 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BadRobot" Version="1.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\mc.bot\mc.navigator\mc.navigator.csproj" />
     <ProjectReference Include="..\mc.cep.service\mc.cep.service.csproj" />
+    <ProjectReference Include="..\mc.provider.mongo\mc.provider.mongo.csproj" />
+    <ProjectReference Include="..\mc.repository.person\mc.repository.person.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,6 @@ using mc.navigator.domain.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace mc.cep.service.Providers
 {

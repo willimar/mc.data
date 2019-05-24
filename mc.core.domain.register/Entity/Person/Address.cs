@@ -44,5 +44,12 @@ namespace mc.core.domain.register.Entity.Person
 
             return false;
         }
+
+        public override bool IsValid()
+        {
+            return !string.IsNullOrEmpty(this.FullStreeName)
+                && !string.IsNullOrEmpty(this.PostalCode)
+                && this.City.IsValid();
+        }
     }
 }
