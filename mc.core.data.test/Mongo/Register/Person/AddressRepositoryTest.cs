@@ -25,18 +25,9 @@ namespace mc.core.data.test.Mongo.Register.Person
                 PostalCode = "36038-000",
                 PublicPlace = "Villa Bolçadas",
                 District = "Santos Dumont",
-                City = new City()
-                {
-                    Name = "Juiz de Fora",
-                    State = new State()
-                    {
-                        Name = "Minas Gerais",
-                        Country = new Country()
-                        {
-                            Name = "Brasil"
-                        }
-                    }
-                }
+                City = "Juiz de Fora",
+                State = "Minas Gerais",
+                Country = "Brasil"
             };
         }
 

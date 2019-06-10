@@ -99,7 +99,9 @@ namespace mc.core.service.test.Register
             {
                 list.Add(new Address()
                 {
-                    City = GetCity(),
+                    City = "Florianópolis",
+                    State = "Santa Catarina",
+                    Country = "Brasil",
                     Complement = "Near to shopping",
                     District = "Broklyng",
                     Number = "12",
@@ -109,28 +111,6 @@ namespace mc.core.service.test.Register
             }
 
             return list;
-        }
-
-        private City GetCity()
-        {
-            return new City()
-            {
-                Code = null,
-                Initials = "FLR",
-                Name = "Florianópolis",
-                State = new State()
-                {
-                    Code = null,
-                    Initials = "SC",
-                    Name = "Santa Catarina",
-                    Country = new Country()
-                    {
-                        Code = null,
-                        Initials = "BRA",
-                        Name = "Brasil"
-                    }
-                }
-            };
         }
 
         [TestMethod]

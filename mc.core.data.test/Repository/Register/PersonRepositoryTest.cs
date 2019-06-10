@@ -97,7 +97,9 @@ namespace mc.core.data.test.Repository.Register
             for (int i = 0; i < 5; i++)
             {
                 list.Add(new Address() {
-                    City = GetCity(),
+                    City = "Florianópolis",
+                    Country = "Brasil",
+                    State = "Santa Catarina",
                     Complement = "Near to shopping",
                     District = "Broklyng",
                     Number = "12",
@@ -107,28 +109,6 @@ namespace mc.core.data.test.Repository.Register
             }
 
             return list;
-        }
-
-        private City GetCity()
-        {
-            return new City()
-            {
-                Code = null,
-                Initials = "FLR",
-                Name = "Florianópolis",
-                State = new State()
-                {
-                    Code = null,
-                    Initials = "SC",
-                    Name = "Santa Catarina",
-                    Country = new Country()
-                    {
-                        Code = null,
-                        Initials = "BRA",
-                        Name = "Brasil"
-                    }
-                }
-            };
         }
     }
 }

@@ -18,9 +18,9 @@ namespace mc.core.service.Register
             if (string.IsNullOrWhiteSpace(entity.PostalCode) ||
                 string.IsNullOrWhiteSpace(entity.PublicPlace) ||
                 string.IsNullOrWhiteSpace(entity.District) ||
-                string.IsNullOrWhiteSpace(entity.City.Name) ||
-                string.IsNullOrWhiteSpace(entity.City.State.Name) ||
-                string.IsNullOrWhiteSpace(entity.City.State.Country.Name))
+                string.IsNullOrWhiteSpace(entity.City) ||
+                string.IsNullOrWhiteSpace(entity.State) ||
+                string.IsNullOrWhiteSpace(entity.Country))
             {
                 return false;
             }

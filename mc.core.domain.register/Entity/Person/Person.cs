@@ -16,6 +16,7 @@ namespace mc.core.domain.register.Entity.Person
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
+        public string NickName { get; set; }
         public virtual IEnumerable<PersonalContact> PersonalContacts { get; set; }
         public virtual IEnumerable<Person> Dependents { get; set; }    
         public virtual IEnumerable<Address> Addresses { get; set; }

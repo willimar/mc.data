@@ -16,15 +16,13 @@ namespace mc.core.domain.register.Entity.Person
         public string Complement { get; set; }
         public string PostalCode { get; set; }
         public string District { get; set; }
-        public City City { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
 
         public override void Dispose()
         {
-            if (this.City != null)
-            {
-                this.City.Dispose();
-            }
-
+            
         }
 
         public bool Equals(Address other)
@@ -49,7 +47,9 @@ namespace mc.core.domain.register.Entity.Person
         {
             return !string.IsNullOrEmpty(this.FullStreeName)
                 && !string.IsNullOrEmpty(this.PostalCode)
-                && this.City.IsValid();
+                && !string.IsNullOrEmpty(this.City)
+                && !string.IsNullOrEmpty(this.State)
+                && !string.IsNullOrEmpty(this.Country);
         }
     }
 }

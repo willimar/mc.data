@@ -29,19 +29,9 @@ namespace mc.cep.service.Providers
                     PublicPlace = json.logradouro,
                     Complement = json.complemento,
                     District = json.bairro,
-                    City = new City
-                    {
-                        Name = json.localidade,
-                        State = new State()
-                        {
-                            Initials = json.uf,
-                            Country = new Country()
-                            {
-                                Name = "Brasil",
-                                Initials = "BR"
-                            }
-                        }
-                    }
+                    City = json.localidade,
+                    State = json.uf,
+                    Country = "Brasil"
                 };
                 return address;
             }

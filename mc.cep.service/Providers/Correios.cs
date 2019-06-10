@@ -71,14 +71,9 @@ namespace mc.cep.service.Providers
                             PostalCode = this.Cep,
                             PublicPlace = rua,
                             District = bairro,
-                            City = new City()
-                            {
-                                Name = city_estado[0],
-                                State = new State()
-                                {
-                                    Initials = city_estado[1]
-                                }
-                            }
+                            City = city_estado[0],
+                            State = city_estado[1],
+                            Country = "Brasil"
                         };
                     }
                 }

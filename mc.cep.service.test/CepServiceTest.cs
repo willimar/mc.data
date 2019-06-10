@@ -20,19 +20,9 @@ namespace mc.cep.service.test
                 PostalCode = "36038-000",
                 PublicPlace = "Rua Professor Villas Bouçada",
                 District = "Santos Dumont",
-                City = new City()
-                {
-                    Name = "Juiz de Fora",
-                    State = new State()
-                    {
-                        Initials = "MG",
-                        Country = new Country()
-                        {
-                            Name = "Brasil",
-                            Initials = "BR"
-                        }
-                    }
-                }
+                City = "Juiz de Fora",
+                State = "MG",
+                Country = "Brasil"
             };
 
             Assert.IsTrue(address.Equals(addressCheck));

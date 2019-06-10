@@ -54,8 +54,11 @@ namespace mc.provider.sqlserver.Context
 
         public void Dispose()
         {
-            this._context.Dispose();
-            this._context = null;
+            if (this._context != null)
+            {
+                this._context.Dispose();
+                this._context = null;
+            }             
         }
 
         public TContext GetContext<TContext>()
