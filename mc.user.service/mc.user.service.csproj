@@ -5,11 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="8.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\mc.core.domain.register\mc.core.domain.register.csproj" />
     <ProjectReference Include="..\mc.core.domain\mc.core.domain.csproj" />
+    <ProjectReference Include="..\mc.core.service\mc.core.service.csproj" />
   </ItemGroup>
 
 </Project>

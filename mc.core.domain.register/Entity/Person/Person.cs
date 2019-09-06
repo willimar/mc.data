@@ -82,7 +82,8 @@ namespace mc.core.domain.register.Entity.Person
 
         public override bool IsValid()
         {
-            throw new NotImplementedException();
+            return !string.IsNullOrWhiteSpace(this.Name)
+                && !string.IsNullOrWhiteSpace(this.Id.ToString());
         }
     }
 }

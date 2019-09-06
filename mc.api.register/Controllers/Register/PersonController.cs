@@ -11,7 +11,7 @@ namespace mc.api.register.Controllers.Register
     [ApiController]
     public class PersonController : Controller
     {
-        private IPersonService personService;
+        private readonly IPersonService personService;
 
         public PersonController(IPersonService personService)
         {

@@ -18,7 +18,7 @@ namespace mc.core.service.Register
 
         public override bool IsValidRecord(Person entity)
         {
-            if (string.IsNullOrWhiteSpace(entity.Name))
+            if (!entity.IsValid())
             {
                 return false;
             }
